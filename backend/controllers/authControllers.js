@@ -45,7 +45,7 @@ const login = async (req, res) => {
       { expiresIn: "1h" },
       (err, token) => {
         if (err) throw err;
-        res.json({ token });
+        res.json({ token:token });
       }
     );
   } catch (err) {

@@ -13,6 +13,10 @@ const classSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
+    time: {
+        type: String,
+        required: true
+      },
     availableSpots: {
         type: Number,
         required: true

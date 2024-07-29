@@ -17,8 +17,9 @@ const auth = (req, res, next) => {
 };
 
 const instructorAuth = async (req, res, next) => {
-  const user = await User.findById(req.user.id);
+  const user = await User.findById(req.user.user.id);
   if (user.role !== "instructor")
+  
     return res.status(403).json({ msg: "Access denied" });
   next();
 };
