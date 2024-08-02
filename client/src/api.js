@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const api = axios.create({
-    baseUrl: 'http://localhost:5000/api'
-})
+const api = 'http://localhost:8000/api/auth'
+
+
 export default api

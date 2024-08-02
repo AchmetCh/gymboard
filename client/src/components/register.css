@@ -1,0 +1,29 @@
+.registerContainer {
+    display: flex;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    gap: 50px;
+    border: 1px solid black;
+    align-items: center;
+    font-size: 22px; 
+    transition: background-color 0.3s, box-shadow 0.3s; 
+}
+.registerContainer img {
+    width: 400px;
+}
+
+.loginForm button {
+    margin: 20px;
+    width: 250px;
+}
+
+@media only screen and (max-width: 768px) {
+    .registerContainer {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 50px;
+        flex-direction: column-reverse;
+    }
+  }

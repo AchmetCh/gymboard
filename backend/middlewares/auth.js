@@ -19,8 +19,23 @@ const auth = (req, res, next) => {
 const instructorAuth = async (req, res, next) => {
   const user = await User.findById(req.user.user.id);
   if (user.role !== "instructor")
-  
     return res.status(403).json({ msg: "Access denied" });
   next();
 };
-module.exports = { auth, instructorAuth };
+
+const adminAuth = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user.user.id);
+    console.log(user.role)
+    if (user.role !== "admin") {
+      console.error('User is not an admin');
+      return res.status(403).json({ msg: "Access denied" });
+    }
+    next();
+  } catch (err) {
+    console.error('Error verifying token:', err);
+    res.status(400).send("Invalid token");
+  }
+};
+
+module.exports = { auth, instructorAuth, adminAuth };

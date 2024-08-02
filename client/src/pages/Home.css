@@ -1,0 +1,56 @@
+.container {
+    display: grid;
+    margin: 0;
+  } 
+.HomePageContainer {
+    height: 800px;
+    width: 99vw;
+    background-image: url('../assets/homeImg.webp');
+    border-radius: 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    place-self: center;
+    display: grid;
+    justify-items: center;
+    align-content: space-between;
+}
+.homeH1 {
+    margin: 50px 100px 0 0 ;
+    font-size-adjust: 0.9;
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+    justify-self: end;
+    -webkit-text-stroke: black;
+    -webkit-text-stroke-width: thin;
+}
+
+.homeButtons {
+    background-color: rgba(255, 255, 255, 0.8); 
+    color: #000; 
+    border: 1px solid rgba(0, 0, 0, 0.1); 
+    padding: 20px 20px 20px 20px; 
+    border-radius: 5px; 
+    font-size: 22px; 
+    transition: background-color 0.3s, box-shadow 0.3s; 
+    width: 250px;
+    margin-right: 50px;
+}
+.homeButtons:hover {
+    background-color: rgba(255, 255, 255, 0.9); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   cursor:pointer;
+}
+@media only screen and (max-width: 768px) {
+    .HomePageContainer {
+      width: 100vw;
+      height: 90vh;
+      background-size: 100% 100%; 
+      max-width: none; 
+    }
+    .homeButtons {
+        margin-right: 5px;
+    }
+  }
+
+
