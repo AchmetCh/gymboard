@@ -1,25 +1,49 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import Login from './components/Login'
-import Register from './components/Register'
-import ViewClasses from './components/ViewClasses'
+import Login from "./components/Login";
+import Register from "./components/Register";
+import ViewClasses from "./components/ViewClasses";
+import InsNewClass from "./components/InsNewClass";
 import "./App.css";
 
 function App() {
+  const token = localStorage.getItem("token");
+
+  let role = null;
+  try {
+    const decodedToken = jwtDecode(token);
+    role = decodedToken.user.role;
+  } catch (error) {
+    console.error(error);
+  }
   return (
     <Router>
       <Navbar />
-      {/* Add your routes here */}
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/view-classes" element={<ViewClasses />} />
-        {/* <Route path="/" element={<Home />} /> */}
-      </Routes>
+  
+      {role === "user" ? (
+        <>
+          <Routes>
+            <Route path="/" element={<ViewClasses />} />
+            {/* <Route path="/" element={<Home />} /> */}
+          </Routes>
+        </>
+      ) : (
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="*" element={<Navigate to="/" />} />
+          {/* <Route path="/" element={<Home />} /> */}
+        </Routes>
+      )}
     </Router>
   );
 }

@@ -1,5 +1,7 @@
 const Class = require("../models/Class");
 const User = require("../models/User");
+const fs = require('fs');
+const path = require('path');
 
 const getAllClasses = async (req, res) => {
   try {
@@ -143,6 +145,33 @@ const getUserBookings = async(req,res) => {
     }
   }
 
+  const cleanupUploads = async (req, res) => {
+    try {
+      // Get the list of all image filenames in the uploads directory
+      const uploadDir = path.join(__dirname, '../uploads');
+      const files = fs.readdirSync(uploadDir);
+  
+      // Get the list of all image filenames referenced in the Class collection
+      const classes = await Class.find({}, 'img');
+      const classImages = classes.map(cls => path.basename(cls.img));
+  
+      // Find and delete orphaned files
+      files.forEach(file => {
+        if (!classImages.includes(file)) {
+          const filePath = path.join(uploadDir, file);
+          fs.unlinkSync(filePath);
+          console.log(`Deleted orphaned file: ${filePath}`);
+        }
+      });
+  
+      res.json({ msg: 'Uploads folder cleaned up' });
+    } catch (err) {
+      console.error('Error during cleanup process:', err);
+      res.status(500).json({ message: err.message });
+    }
+  };
+
+
 
 
 module.exports = {
@@ -155,5 +184,6 @@ module.exports = {
     getInstructorBookings,
     instructorResetAvailableSpots,
     getAllUsers,
-    updateUserRole
+    updateUserRole,
+    cleanupUploads
 }

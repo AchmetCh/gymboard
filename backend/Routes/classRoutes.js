@@ -12,7 +12,8 @@ const {
   getInstructorBookings,
   instructorResetAvailableSpots,
   getAllUsers,
-  updateUserRole
+  updateUserRole,
+  cleanupUploads
 } = require("../controllers/classController");
 
 const fs = require("fs");
@@ -53,5 +54,7 @@ router.get("/instructor-bookings", auth, instructorAuth, getInstructorBookings);
 router.put('/instructor/reset-available-spots', auth,instructorAuth, instructorResetAvailableSpots);
 router.get("/users", auth, adminAuth, getAllUsers)
 router.put('/users/:id/role', auth, adminAuth, updateUserRole)
+router.delete('/cleanup', cleanupUploads)
+
 
 module.exports = router;
