@@ -7,6 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Navbar.css";
+import { IoMdLogOut } from "@react-icons/all-files/io/IoMdLogOut";
 
 const NavigationBar = () => {
   const navigate = useNavigate();
@@ -39,14 +40,19 @@ const NavigationBar = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link>
-                <Link
-                  as={Link}
-                  to="/"
-                  className="text-white text-decoration-none"
-                >
-                  Classes
-                </Link>
+              <Nav.Link
+                as={Link}
+                to="/"
+                className="text-white text-decoration-none mx-2"
+              >
+                Classes
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/mybookings"
+                className="text-white text-decoration-none mx-2"
+              >
+                My Bookings
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
@@ -55,7 +61,43 @@ const NavigationBar = () => {
             variant="warning"
             onClick={() => handleLogout()}
           >
-            Power Down
+            Power Down <IoMdLogOut />
+          </Button>{" "}
+        </>
+      ) : role === "instructor" ? (
+        <>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link
+                as={Link}
+                to="/"
+                className="text-white text-decoration-none"
+              >
+                Classes
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/newclass"
+                className="text-white text-decoration-none"
+              >
+                Add New Class
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/deleteclass"
+                className="text-white text-decoration-none"
+              >
+                Delete Class
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+          <Button
+            className="m-3"
+            variant="warning"
+            onClick={() => handleLogout()}
+          >
+            Enough for Today <IoMdLogOut />
           </Button>{" "}
         </>
       ) : (

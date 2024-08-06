@@ -12,6 +12,8 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import ViewClasses from "./components/ViewClasses";
 import InsNewClass from "./components/InsNewClass";
+import UserBookings from "./components/UserBookings";
+import InsDeleteClass from "./components/InsDeleteClass";
 import "./App.css";
 
 function App() {
@@ -32,6 +34,16 @@ function App() {
         <>
           <Routes>
             <Route path="/" element={<ViewClasses />} />
+            <Route path="/mybookings" element={<UserBookings />} />
+            {/* <Route path="/" element={<Home />} /> */}
+          </Routes>
+        </>
+      ) : role === "instructor" ? (
+        <>
+          <Routes>
+          <Route path="/" element={<ViewClasses />} />
+          <Route path="/newclass" element={<InsNewClass />} />
+          <Route path="/deleteclass" element={<InsDeleteClass />} />
             {/* <Route path="/" element={<Home />} /> */}
           </Routes>
         </>

@@ -13,7 +13,7 @@ const getAllClasses = async (req, res) => {
 };
 
 const createClass = async (req, res) => {
-  const { title, date,time, availableSpots } = req.body;
+  const { title, date,time, availableSpots,instructor } = req.body;
   const img = req.file ? req.file.path : "";
   try {
     const newClass = new Class({

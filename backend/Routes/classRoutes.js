@@ -41,12 +41,7 @@ router.post(
   upload.single("img"),
   createClass
 );
-router.delete(
-    "/classes/:id",
-    auth,
-    instructorAuth,
-    deleteClass
-  );
+router.delete("/classes/:id",auth,instructorAuth,deleteClass);
 router.post("/classes/book/:id", auth, bookClass);
 router.delete("/classes/cancel/:id", auth, cancelBooking);
 router.get("/my-bookings", auth, getUserBookings);
