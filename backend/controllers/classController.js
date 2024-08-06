@@ -13,7 +13,7 @@ const getAllClasses = async (req, res) => {
 };
 
 const createClass = async (req, res) => {
-  const { title, date,time, availableSpots,instructor } = req.body;
+  const { title, date,time, availableSpots,instructor, instructorName } = req.body;
   const img = req.file ? req.file.path : "";
   try {
     const newClass = new Class({
@@ -22,7 +22,8 @@ const createClass = async (req, res) => {
       date,
       time,
       availableSpots,
-      instructor: req.user.id,
+      instructor,
+      instructorName
     });
     await newClass.save();
     res.json(newClass);
@@ -51,7 +52,7 @@ const bookClass = async (req, res) => {
       return res.status(400).json({ msg: "No spots available" });
     }
     if (user.bookings.includes(gymClass._id)) {
-        return res.status(400).json({ msg: "You have already booked this class" });
+        return res.status(400).json({ msg: "You've already secured your spot!" });
         }
     user.bookings.push(gymClass.id);
     gymClass.availableSpots -= 1;

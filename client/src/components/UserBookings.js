@@ -37,7 +37,7 @@ const UserBookings = () => {
                 "x-auth-token": token,
                 },
                 });
-                toast.success("Booking cancelled");
+                toast.info("Class cancelled! See you next time! 😪 ");
                 getBookings();
                 } catch (error) {
                     console.error(error);
@@ -69,6 +69,7 @@ const UserBookings = () => {
           ))}
         </tbody>
       </Table>
+      <ToastContainer/>
     </div>
   );
 };

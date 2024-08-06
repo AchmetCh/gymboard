@@ -34,6 +34,11 @@ const classSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+  instructorName: {
+    type: String,
+    ref: "User",
+    select: "username"
+  }
 });
 classSchema.virtual("bookings", {
   ref: "User",

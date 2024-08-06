@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 import { jwtDecode } from "jwt-decode";
 import Button from "react-bootstrap/Button";
+import { CgProfile } from "@react-icons/all-files/cg/CgProfile";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -12,18 +13,20 @@ import { IoMdLogOut } from "@react-icons/all-files/io/IoMdLogOut";
 const NavigationBar = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-
+  
   let role = null;
+  let name = null
   try {
     const decodedToken = jwtDecode(token);
     role = decodedToken.user.role;
+    name = decodedToken.user.name
   } catch (error) {
     console.error(error);
   }
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    toast.info("Logged out successfully", {
+    toast.info("Power down complete. Stay strong!", {
       onClose: () => navigate("/"),
     });
     setTimeout(() => (window.location.href = `/`), 2000);
@@ -56,12 +59,14 @@ const NavigationBar = () => {
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
+         <Navbar.Text className="d-flex flex-column align-items-center me-5"> <CgProfile className="text-white fs-1" /> <span>Welcome</span> <span>{name}</span>  </Navbar.Text>
           <Button
             className="m-3"
             variant="warning"
             onClick={() => handleLogout()}
           >
             Power Down <IoMdLogOut />
+
           </Button>{" "}
         </>
       ) : role === "instructor" ? (

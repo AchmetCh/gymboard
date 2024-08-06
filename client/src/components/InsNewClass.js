@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import { Form, Button, Col, Row, Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -19,32 +20,40 @@ const InsNewClass = () => {
   const [time, setTime] = useState("");
   const [availableSpots, setAvailableSpots] = useState("");
   const [img, setImg] = useState(null);
+  const [instructorId, setInstructorId] = useState([]);
+  const [instructorName, setInstructorName] = useState([])
 
   const handleFileChange = (e) => {
     setImg(e.target.files[0]);
   };
-
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      const userId = decodedToken;
+      setInstructorId(userId.user.id);
+      setInstructorName(userId.user.name)
+      console.log(userId.user.name);
+    }
+  }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const formData = new FormData();
     formData.append("title", title);
     formData.append("date", date);
     formData.append("time", time);
     formData.append("availableSpots", availableSpots);
     if (img) formData.append("img", img);
+    formData.append("instructor", instructorId);
+    formData.append("instructorName", instructorName);
 
     try {
-      const response = await axios.post(
-        `${api}/classes`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            "x-auth-token": localStorage.getItem("token"),
-          },
-        }
-      );
+      const response = await axios.post(`${api}/classes`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          "x-auth-token": localStorage.getItem("token"),
+        },
+      });
       console.log("Class created successfully:", response.data);
       ToasSuccessful();
     } catch (error) {
@@ -137,6 +146,7 @@ const InsNewClass = () => {
           </Button>
         </Form>
       </Container>
+      <ToastContainer/>
     </div>
   );
 };

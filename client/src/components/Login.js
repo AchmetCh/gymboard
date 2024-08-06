@@ -12,7 +12,7 @@ import img from '../assets/loginImg.jpg'
 
 const Login = () => {
   const ToasSuccessful = () =>
-    toast.success("Login successful!", {
+    toast.success("Welcome back! Ready to crush it?", {
       onClose: () => navigate("/"),
     });
   const ToastFailed = () => toast.error("Login Failed! Please try again.");

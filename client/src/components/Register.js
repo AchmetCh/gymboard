@@ -15,13 +15,10 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const ToastSuccessful = () =>
-    toast.success("Registered Successful!", {
-      onClose: () => navigate("/"),
-    });
-  const ToastFailed = () => toast("Password and Confirmation not match");
-  const ToastALreadyExist = () => toast("User already exist try to login");
   const navigate = useNavigate();
+ 
+  const ToastFailed = () => toast.error("Password and Confirmation not match");
+  const ToastALreadyExist = () => toast.info("User already exist try to login");
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -34,7 +31,11 @@ const Register = () => {
       const response = await axios.post(`${api}/register`, newUser);
       console.log(response.data);
       localStorage.setItem("token", response.data.token);
-      ToastSuccessful();
+      toast.success('Register Successful')
+      setTimeout(() => {
+        navigate('/')
+        window.location.reload()
+      }, 2000);
     } catch (error) {
       if (error.response.status === 400) {
         ToastALreadyExist();
@@ -90,7 +91,7 @@ const Register = () => {
             />
           </Form.Group>
           <Button variant="outline-primary" type="submit">
-          Ready to Push Limits!
+            Ready to Push Limits!
           </Button>
         </Form>
       </div>

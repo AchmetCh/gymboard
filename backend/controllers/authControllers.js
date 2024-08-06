@@ -15,7 +15,7 @@ const register = async (req, res) => {
     const salt = await bcrypt.genSalt(SALT_ROUNDS);
     user.password = await bcrypt.hash(password, salt);
     await user.save();
-    const payload = { user: { id: user.id, role: user.role } };
+    const payload = { user: { id: user.id, role: user.role, name: user.username } };
     const token = jwt.sign(
       payload,
       PRIVATE_KEY,
@@ -38,7 +38,7 @@ const login = async (req, res) => {
     if (!user) return res.status(400).json({ msg: "User not found" });
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
-    const payload = { user: { id: user.id, role: user.role } };
+    const payload = { user: { id: user.id, role: user.role, name: user.username } };
     const token = jwt.sign(
       payload,
       PRIVATE_KEY,

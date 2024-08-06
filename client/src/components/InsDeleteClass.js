@@ -25,8 +25,22 @@ const InsDeleteClass = () => {
       console.error(error);
     }
   };
-  useEffect(() => {
+  const cleanUpFunc = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.delete(`${api}/cleanup`, {
+        headers: {
+          'x-auth-token':token,
+          }
+          });
+          console.log(response.data);
+        }catch (error) {
+          console.error(error)
+          }
+  }
+  useEffect(() => { 
     getClasses();
+    cleanUpFunc()
   }, []);
   const deleteClass = async (id) => {
     try {
@@ -38,6 +52,7 @@ const InsDeleteClass = () => {
       });
       toast.success("Class delete successfully");
       getClasses();
+      window.location.reload()
     } catch (error) {
       console.error(error);
       toast.error('Error deleting Class')
