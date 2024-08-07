@@ -94,7 +94,8 @@ const getUserBookings = async(req,res) => {
 
     const getInstructorBookings = async (req, res) => {
       try {
-        const classes = await Class.find({ instructor: req.user.id }).populate({
+        //{ instructor: req.user.user.id } when want to filter by instructor bookings
+        const classes = await Class.find().populate({
           path: 'bookings',
           model: 'User',
           select: 'username email phoneNumber'

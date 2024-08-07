@@ -14,6 +14,7 @@ import ViewClasses from "./components/ViewClasses";
 import InsNewClass from "./components/InsNewClass";
 import UserBookings from "./components/UserBookings";
 import InsDeleteClass from "./components/InsDeleteClass";
+import InsBookings from "./components/InsBookings";
 import "./App.css";
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
           <Route path="/" element={<ViewClasses />} />
           <Route path="/newclass" element={<InsNewClass />} />
           <Route path="/deleteclass" element={<InsDeleteClass />} />
+          <Route path="/insbookings" element={<InsBookings />} />
             {/* <Route path="/" element={<Home />} /> */}
           </Routes>
         </>
