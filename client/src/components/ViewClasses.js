@@ -90,7 +90,7 @@ const ViewClasses = () => {
                     <Card
                       border="secondary"
                       key={index}
-                      style={{ width: "18rem", marginBottom: "1rem" }}
+                      style={{ width: "15rem", marginBottom: "1rem" }}
                     >
                       <Card.Img
                         variant="top"

@@ -3,11 +3,11 @@
     margin: 0;
   } 
 .HomePageContainer {
-    height: 800px;
-    width: 99vw;
+    height:100dvh;
+    width:100cqmax;
     background-image: url('../assets/homeImg.webp');
     border-radius: 10px;
-    background-size: cover;
+    background-size:100cqmax;
     background-repeat: no-repeat;
     place-self: center;
     display: grid;
@@ -44,12 +44,15 @@
 @media only screen and (max-width: 768px) {
     .HomePageContainer {
       width: 100vw;
-      height: 90vh;
+      height: 85vh;
       background-size: 100% 100%; 
       max-width: none; 
     }
+    .container main {
+        display: flex;
+    }
     .homeButtons {
-        margin-right: 5px;
+        margin-right: 2px;
     }
   }
 

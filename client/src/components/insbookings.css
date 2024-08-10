@@ -1,0 +1,7 @@
+@media only screen and (max-width: 768px) {
+    .mycards {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

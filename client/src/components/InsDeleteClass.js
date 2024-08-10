@@ -60,14 +60,15 @@ const InsDeleteClass = () => {
   };
   return (
     <div>
-      <h2 className="text-center fw-bold"> Instructor Delete Class</h2>
-        <Table>
+      <h2 className="text-center fw-bold"> Instructor Bookings & Delete Class</h2>
+        <Table className="m-5">
             <thead>
                 <tr>
                     <th>Class</th>
                     <th>AvailableSpots</th>
                     <th>Date</th>
                     <th>Time</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -77,7 +78,7 @@ const InsDeleteClass = () => {
                         <td>{classItem.availableSpots}</td>
                         <td>{classItem.date}</td>
                         <td>{classItem.time}</td>
-                        <td className="text-center">
+                        <td className="text-left">
                 <Button variant="danger" style={{ width: "100px" }} onClick={() => deleteClass(classItem._id)}>
                   Delete <RiDeleteBinFill />
                 </Button>

@@ -15,6 +15,7 @@ import InsNewClass from "./components/InsNewClass";
 import UserBookings from "./components/UserBookings";
 import InsDeleteClass from "./components/InsDeleteClass";
 import InsBookings from "./components/InsBookings";
+import AdminChangeRole from "./components/AdminChangeRole";
 import "./App.css";
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
   }
   return (
     <Router>
-      <Navbar />
+      <Navbar/>
   
       {role === "user" ? (
         <>
@@ -46,6 +47,16 @@ function App() {
           <Route path="/newclass" element={<InsNewClass />} />
           <Route path="/deleteclass" element={<InsDeleteClass />} />
           <Route path="/insbookings" element={<InsBookings />} />
+            {/* <Route path="/" element={<Home />} /> */}
+          </Routes>
+        </>
+      ) :role === "admin" ? (
+        <>
+          <Routes>
+          <Route path="/" element={<ViewClasses />} />
+          <Route path="/deleteclass" element={<InsDeleteClass />} />
+          <Route path="/insbookings" element={<InsBookings />} />
+          <Route path="/changeadminrole" element={<AdminChangeRole />} />
             {/* <Route path="/" element={<Home />} /> */}
           </Routes>
         </>

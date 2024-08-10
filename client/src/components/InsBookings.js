@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import api from "../api";
+import './insbookings.css'
 
 const InsBookings = () => {
   const [bookings, setBookings] = useState([]);
@@ -25,8 +26,8 @@ const InsBookings = () => {
   }, []);
   return (
     <div>
-      <h2>Students Book for Class</h2>
-      <div className="d-flex">
+      <h2 className="text-center fw-bold">User Bookings</h2>
+      <div className="d-flex mycards">
 
       {bookings.map((item) => (
           <Card style={{ width: "300px", margin:'15px' }} key={item.gymClass._id} className="gap-4">

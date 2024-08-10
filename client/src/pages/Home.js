@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import './Home.css'
+import Footer from "../components/Footer";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ const Home = () => {
         <button className="homeButtons" onClick={handleRegister}>Register</button>
       </main>
       </header>
+      <Footer/>
     </div>
   );
 };

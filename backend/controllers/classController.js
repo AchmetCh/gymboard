@@ -129,7 +129,7 @@ const getUserBookings = async(req,res) => {
 
     const getAllUsers = async (req,res) => {
       try {
-        const users = await User.find().select('-password')
+        const users = await User.find({ role: { $ne: 'admin' } }).select('-password')
         res.json(users);
       } catch (err) {
         res.status(500).json({ message: err.message });
@@ -145,6 +145,17 @@ const getUserBookings = async(req,res) => {
     }catch (err) {
       res.status(500).json({ message: err.message });
     }
+  }
+
+  const deleteUser= async (req,res) => {
+    const {id} = req.params
+
+    try {
+      await User.findByIdAndDelete(id)
+      res.json({msg: "User deleted" })
+      } catch (err) {
+        res.status(500).json({ message: err.message });
+        }
   }
 
   const cleanupUploads = async (req, res) => {
@@ -187,5 +198,6 @@ module.exports = {
     instructorResetAvailableSpots,
     getAllUsers,
     updateUserRole,
+    deleteUser,
     cleanupUploads
 }

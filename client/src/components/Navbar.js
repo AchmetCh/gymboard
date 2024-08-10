@@ -13,13 +13,13 @@ import { IoMdLogOut } from "@react-icons/all-files/io/IoMdLogOut";
 const NavigationBar = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
-  
+
   let role = null;
-  let name = null
+  let name = null;
   try {
     const decodedToken = jwtDecode(token);
     role = decodedToken.user.role;
-    name = decodedToken.user.name
+    name = decodedToken.user.name;
   } catch (error) {
     console.error(error);
   }
@@ -59,14 +59,17 @@ const NavigationBar = () => {
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
-         <Navbar.Text className="d-flex flex-column align-items-center me-5"> <CgProfile className="text-white fs-1" /> <span>Welcome</span> <span>{name}</span>  </Navbar.Text>
+          <Navbar.Text className="d-flex flex-column align-items-center me-5">
+            {" "}
+            <CgProfile className="text-white fs-1" /> <span>Welcome</span>{" "}
+            <span>{name}</span>{" "}
+          </Navbar.Text>
           <Button
             className="m-3"
             variant="warning"
             onClick={() => handleLogout()}
           >
             Power Down <IoMdLogOut />
-
           </Button>{" "}
         </>
       ) : role === "instructor" ? (
@@ -90,6 +93,13 @@ const NavigationBar = () => {
               </Nav.Link>
               <Nav.Link
                 as={Link}
+                to="/insbookings"
+                className="text-white text-decoration-none"
+              >
+                User Bookings
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
                 to="/deleteclass"
                 className="text-white text-decoration-none"
               >
@@ -97,6 +107,11 @@ const NavigationBar = () => {
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
+          <Navbar.Text className="d-flex flex-column align-items-center me-5">
+            {" "}
+            <CgProfile className="text-white fs-1" /> <span>Welcome</span>{" "}
+            <span>{name}</span>{" "}
+          </Navbar.Text>
           <Button
             className="m-3"
             variant="warning"
@@ -105,12 +120,54 @@ const NavigationBar = () => {
             Enough for Today <IoMdLogOut />
           </Button>{" "}
         </>
+      ) : role === "admin" ? (
+        <>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link
+                as={Link}
+                to="/"
+                className="text-white text-decoration-none"
+              >
+                Classes
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/deleteclass"
+                className="text-white text-decoration-none"
+              >
+                Bookings & Delete Class
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/changeadminrole"
+                className="text-white text-decoration-none"
+              >
+                Users
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+          <Navbar.Text className="d-flex flex-column align-items-center me-5">
+            {" "}
+            <CgProfile className="text-white fs-1" /> <span>Welcome</span>{" "}
+            <span>{name}</span>{" "}
+          </Navbar.Text>
+          <Button
+            className="m-3"
+            variant="warning"
+            onClick={() => handleLogout()}
+          >
+            Let's go Home <IoMdLogOut />
+          </Button>{" "}
+        </>
       ) : (
         <>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto"></Nav>
           </Navbar.Collapse>
+     
         </>
       )}
       <ToastContainer />
