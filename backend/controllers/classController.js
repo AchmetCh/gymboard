@@ -114,7 +114,7 @@ const getUserBookings = async(req,res) => {
 
    const instructorResetAvailableSpots = async (req, res) => {
     try {
-      const classes = await Class.find({ instructor: req.user.id });
+      const classes = await Class.find();
       classes.forEach(async (gymClass) => {
         gymClass.availableSpots = 10;
         await gymClass.save();

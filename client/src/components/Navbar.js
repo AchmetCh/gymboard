@@ -1,14 +1,17 @@
 import React from "react";
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 import { jwtDecode } from "jwt-decode";
 import Button from "react-bootstrap/Button";
 import { CgProfile } from "@react-icons/all-files/cg/CgProfile";
+import { BiReset } from "@react-icons/all-files/bi/BiReset";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Navbar.css";
 import { IoMdLogOut } from "@react-icons/all-files/io/IoMdLogOut";
+import api from "../api";
 
 const NavigationBar = () => {
   const navigate = useNavigate();
@@ -30,6 +33,23 @@ const NavigationBar = () => {
       onClose: () => navigate("/"),
     });
     setTimeout(() => (window.location.href = `/`), 2000);
+  };
+  const handleReset = async () => {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await axios.put(`${api}/instructor/reset-available-spots`,{}, {
+        headers: {
+          "x-auth-token": token,
+        }
+      });
+      toast.success("Reset successful!", {
+        onClose: () => navigate("/"),
+        });
+      console.log(response)
+          } catch (error) {
+            console.error(error)
+            toast.error('Something went wrong')
+            }
   };
 
   return (
@@ -107,6 +127,13 @@ const NavigationBar = () => {
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
+          <Button
+            className="m-3"
+            variant="danger"
+            onClick={() => handleReset()}
+          >
+            Reset All Classes <BiReset />
+          </Button>{" "}
           <Navbar.Text className="d-flex flex-column align-items-center me-5">
             {" "}
             <CgProfile className="text-white fs-1" /> <span>Welcome</span>{" "}
@@ -167,7 +194,6 @@ const NavigationBar = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto"></Nav>
           </Navbar.Collapse>
-     
         </>
       )}
       <ToastContainer />

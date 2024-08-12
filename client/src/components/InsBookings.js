@@ -18,7 +18,7 @@ const InsBookings = () => {
         },
       });
       setBookings(response.data);
-      console.log(response.data);
+      console.log(response.data)
     } catch (error) {}
   };
   useEffect(() => {
@@ -30,6 +30,7 @@ const InsBookings = () => {
       <div className="d-flex mycards">
 
       {bookings.map((item) => (
+      item.users.length > 0? (
           <Card style={{ width: "300px", margin:'15px' }} key={item.gymClass._id} className="gap-4">
           <Card.Body key={item.gymClass._id}>
             <div className="d-flex gap-5">
@@ -55,7 +56,7 @@ const InsBookings = () => {
             </Table>
           </Card.Body>
         </Card>
-      ))}
+      ): (<p></p>)))}
       </div>
     </div>
   );
