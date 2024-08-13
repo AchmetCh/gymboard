@@ -26,6 +26,7 @@ const Login = () => {
     try {
       const response = await axios.post(`${api}/login`, credentials);
       localStorage.setItem("token", response.data.token);
+      console.log(response)
       ToasSuccessful();
       setTimeout(() => window.location.href = `/`,2000);
     } catch (error) {

@@ -5,6 +5,10 @@ const authRoutes = require('./Routes/autRoutes')
 const classRoutes = require('./Routes/classRoutes')
 const path = require('path')
 
+// app.use(cors({
+//     origin: ['https://myrender.eu/gymboard'], // allow CORS only from this domain
+//     credentials: true
+//   }))
 const app = express()
 const port = 8000
 
