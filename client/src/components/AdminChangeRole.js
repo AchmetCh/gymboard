@@ -4,6 +4,7 @@ import { Table, Button, Card, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Navbar from './Navbar'
 import api from "../api";
 
 const AdminChangeRole = () => {

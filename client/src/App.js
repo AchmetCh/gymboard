@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import CreateUser from "./components/AdminCreateUser";
 import ViewClasses from "./components/ViewClasses";
 import InsNewClass from "./components/InsNewClass";
 import UserBookings from "./components/UserBookings";
@@ -57,6 +58,7 @@ function App() {
           <Route path="/deleteclass" element={<InsDeleteClass />} />
           <Route path="/insbookings" element={<InsBookings />} />
           <Route path="/changeadminrole" element={<AdminChangeRole />} />
+          <Route path="/admincreateuser" element={<CreateUser/>}/>
             {/* <Route path="/" element={<Home />} /> */}
           </Routes>
         </>

@@ -52,6 +52,8 @@ const NavigationBar = () => {
             }
   };
 
+  
+
   return (
     <Navbar bg="dark" className="d-flex" variant="dark" expand="lg">
       <Navbar.Brand as={Link} to="/">
@@ -79,6 +81,11 @@ const NavigationBar = () => {
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
+          {/* <div>
+            {users.map((user) => {
+              <p>{user.username}</p>
+            })}
+          </div> */}
           <Navbar.Text className="d-flex flex-column align-items-center me-5">
             {" "}
             <CgProfile className="text-white fs-1" /> <span>Welcome</span>{" "}
@@ -172,6 +179,13 @@ const NavigationBar = () => {
                 className="text-white text-decoration-none"
               >
                 Users
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/admincreateuser"
+                className="text-white text-decoration-none"
+              >
+                Create User
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>

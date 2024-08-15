@@ -30,7 +30,6 @@ const ViewClasses = () => {
           "x-auth-token": token,
         },
       });
-      console.log(response.data);
 
       setClasses(response.data);
     } catch (error) {
@@ -64,6 +63,7 @@ const ViewClasses = () => {
 
   // Group classes by day
   const classesByDay = daysOfWeek.reduce((acc, day) => {
+ 
     acc[day] = classes.filter((cls) => cls.date === day);
     return acc;
   }, {});
@@ -94,7 +94,7 @@ const ViewClasses = () => {
                     >
                       <Card.Img
                         variant="top"
-                        src={`http://localhost:8000/${cls.img}`}
+                        src={`https://gym.myrender.eu/${cls.img}`}
                       />
                       <Card.Body>
                         <Card.Title>Class: {cls.title}</Card.Title>

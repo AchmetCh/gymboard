@@ -26,6 +26,15 @@ const userSchema = new mongoose.Schema({
     bookings: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Class'
-    }]
+    }],
+    stripeCustomerId: {
+        type: String,
+    },
+    subscriptionId: {
+        type: String,
+    },
+    subscriptionEndDate: {
+        type: Date,
+    }
 })
 module.exports = mongoose.model('User', userSchema)
