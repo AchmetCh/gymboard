@@ -30,6 +30,11 @@ const classSchema = new mongoose.Schema({
     required: true,
     min:[0]
   },
+  initialAvailableSpots: {
+    type: Number,
+    required: true,
+    min: [0]
+  },
   instructor: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

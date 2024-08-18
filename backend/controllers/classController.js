@@ -22,6 +22,7 @@ const createClass = async (req, res) => {
       date,
       time,
       availableSpots,
+      initialAvailableSpots: availableSpots,
       instructor,
       instructorName
     });
@@ -112,11 +113,26 @@ const getUserBookings = async(req,res) => {
       }
     }
 
-   const instructorResetAvailableSpots = async (req, res) => {
+  //  const instructorResetAvailableSpots = async (req, res) => {
+  //   try {
+  //     const classes = await Class.find();
+  //     classes.forEach(async (gymClass) => {
+  //       gymClass.availableSpots = 10;
+  //       await gymClass.save();
+  //       // Remove the class from the user's bookings
+  //       await User.updateMany({ bookings: gymClass._id }, { $pull: { bookings: gymClass._id } });
+  //     });
+  //     res.json({ msg: "Available spots reset" });
+  //   } catch (err) {
+  //     res.status(500).json({ message: err.message });
+  //   }
+  // };
+  const instructorResetAvailableSpots = async (req, res) => {
     try {
       const classes = await Class.find();
       classes.forEach(async (gymClass) => {
-        gymClass.availableSpots = 10;
+        // Reset availableSpots to its original value
+        gymClass.availableSpots = gymClass.initialAvailableSpots;
         await gymClass.save();
         // Remove the class from the user's bookings
         await User.updateMany({ bookings: gymClass._id }, { $pull: { bookings: gymClass._id } });

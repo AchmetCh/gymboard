@@ -48,6 +48,7 @@ router.delete("/classes/cancel/:id", auth, cancelBooking);
 router.get("/my-bookings", auth, getUserBookings);
 router.get("/instructor-bookings", auth, instructorAuth, getInstructorBookings);
 router.put('/instructor/reset-available-spots', auth,instructorAuth, instructorResetAvailableSpots);
+router.get("/users", auth, getAllUsers)
 router.get("/users", auth, adminAuth, getAllUsers)
 router.put('/users/:id/role', auth, adminAuth, updateUserRole)
 router.delete('/users/del/:id', auth, adminAuth, deleteUser)

@@ -55,8 +55,6 @@ function App() {
         <>
           <Routes>
           <Route path="/" element={<ViewClasses />} />
-          <Route path="/deleteclass" element={<InsDeleteClass />} />
-          <Route path="/insbookings" element={<InsBookings />} />
           <Route path="/changeadminrole" element={<AdminChangeRole />} />
           <Route path="/admincreateuser" element={<CreateUser/>}/>
             {/* <Route path="/" element={<Home />} /> */}

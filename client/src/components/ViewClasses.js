@@ -30,7 +30,6 @@ const ViewClasses = () => {
           "x-auth-token": token,
         },
       });
-
       setClasses(response.data);
     } catch (error) {
       console.error(error);

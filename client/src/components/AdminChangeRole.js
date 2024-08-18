@@ -4,27 +4,13 @@ import { Table, Button, Card, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Navbar from './Navbar'
+import useUserStore from './useStore'
 import api from "../api";
 
 const AdminChangeRole = () => {
-  const [users, setUsers] = useState([]);
+  const {users, getAllUsers, loading} = useUserStore()
   const [selectedRole, setSelectedRole] = useState({});
 
-  const getAllUsers = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.get(`${api}/users`, {
-        headers: {
-          "x-auth-token": token,
-        },
-      });
-      setUsers(response.data);
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const changeUserRole = async (id, role) => {
     try {
@@ -65,6 +51,7 @@ const AdminChangeRole = () => {
 
   useEffect(() => {
     getAllUsers();
+    console.log(users)
   }, []);
 
   const handleRoleChange = (id, role) => {
@@ -84,6 +71,7 @@ const AdminChangeRole = () => {
             <th>Email</th>
             <th>Role</th>
             <th>Update Role</th>
+            <th>Subcription End</th>
             <th>Delete User</th>
           </tr>
         </thead>
@@ -106,6 +94,7 @@ const AdminChangeRole = () => {
               <td>
                 <Button onClick={() => handleUpdateRole(user._id)}>Update</Button>
               </td>
+              <td>{user.subscriptionEndDate ? (<p>{user.subscriptionEndDate.slice(0,10)}</p>): (<p>Not available</p>)}</td>
               <td>
                 <Button variant="danger" onClick={() => handleDeleteUser(user._id)}>Delete</Button>
               </td>
