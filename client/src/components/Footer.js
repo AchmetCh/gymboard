@@ -1,17 +1,14 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./Navbar.css";
 
 const Footer = () => {
   return (
     <footer
       className="bg-dark text-white mt-2 myFooter"
-      style={{
-        width: "100%",
-        height: '215px'
-      }}
     >
-      <Container fluid>
+      <Container fluid >
         <Row>
           <Col md="4">
             <h5>About Us</h5>

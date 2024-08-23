@@ -71,7 +71,7 @@ const ViewClasses = () => {
     <div>
       <h2 className="text-center fw-bold">Gym Classes</h2>
       <div className="table-responsive">
-        <Table className="table table-bordered table-secondary">
+        <Table className="table table-bordered table-secondary" style={{width:'95%', margin:'5px'}}>
           <thead>
             <tr>
               {daysOfWeek.map((day) => (

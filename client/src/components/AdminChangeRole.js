@@ -64,7 +64,7 @@ const AdminChangeRole = () => {
 
   return (
     <div>
-      <Table>
+      <Table style={{width:'95%', margin:'5px'}}>
         <thead>
           <tr>
             <th>Username</th>

@@ -7,7 +7,7 @@
     width:100cqmax;
     background-image: url('../assets/homeImg.webp');
     border-radius: 10px;
-    background-size:100cqmax;
+    background-size:96cqmax;
     background-repeat: no-repeat;
     place-self: center;
     display: grid;
@@ -33,7 +33,7 @@
     border-radius: 5px; 
     font-size: 22px; 
     transition: background-color 0.3s, box-shadow 0.3s; 
-    width: 250px;
+    width:250px;
     margin-right: 50px;
 }
 .homeButtons:hover {
@@ -41,18 +41,27 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
    cursor:pointer;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 568px) {
     .HomePageContainer {
-      width: 100vw;
-      height: 85vh;
-      background-size: 100% 100%; 
-      max-width: none; 
+        height: 100dvh;
+        width:95cqmax;
+        background-image: url('../assets/homeImg.webp');
+        border-radius: 10px;
+        background-repeat: no-repeat;
+        place-self: center;
+        display: grid;
+        justify-items: center;
+        align-content: space-evenly;
+        justify-content: start;
     }
     .container main {
         display: flex;
     }
     .homeButtons {
         margin-right: 2px;
+    }
+    .homeButtons {
+        width:100px;
     }
   }
 

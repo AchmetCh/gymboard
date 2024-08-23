@@ -70,7 +70,7 @@ const NavigationBar = () => {
   };
 
   return (
-    <Navbar bg="dark" className="d-flex" variant="dark" expand="lg">
+    <Navbar bg="dark" className="d-flex navbarCss" variant="dark" expand="xl">
       <Navbar.Brand as={Link} to="/">
         {" "}
         <h1 className="navbarH1">GymBoard</h1>{" "}
