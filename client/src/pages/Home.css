@@ -2,18 +2,19 @@
     display: grid;
     margin: 0;
   } 
+
 .HomePageContainer {
-    height:100dvh;
-    width:100cqmax;
+    height: 100vh; 
+    width: 100vw;
     background-image: url('../assets/homeImg.webp');
-    border-radius: 10px;
-    background-size:96cqmax;
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
-    place-self: center;
+    border-radius: 10px;
     display: grid;
-    justify-items: center;
-    align-content: space-between;
+    place-items: center;
 }
+
 .homeH1 {
     margin: 50px 100px 0 0 ;
     font-size-adjust: 0.9;
@@ -24,6 +25,7 @@
     -webkit-text-stroke: black;
     -webkit-text-stroke-width: thin;
 }
+
 
 .homeButtons {
     background-color: rgba(255, 255, 255, 0.8); 
@@ -36,12 +38,14 @@
     width:250px;
     margin-right: 50px;
 }
+
 .homeButtons:hover {
-    background-color: rgba(255, 255, 255, 0.9); 
+    background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-   cursor:pointer;
+    cursor: pointer;
 }
-@media only screen and (max-width: 568px) {
+
+@media only screen and (max-width: 768px) {
     .HomePageContainer {
         height: 100dvh;
         width:95cqmax;
@@ -58,11 +62,9 @@
         display: flex;
     }
     .homeButtons {
-        margin-right: 2px;
+        margin-right: 5px;
     }
     .homeButtons {
         width:100px;
     }
-  }
-
-
+}

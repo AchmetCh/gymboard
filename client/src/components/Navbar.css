@@ -5,16 +5,13 @@
     width: 97%;
 }
 .myFooter {
-      width: 95%;
+      width: 100%;
       height: 95%
 }
 
 @media only screen and (max-width: 568px) {
     .navbarCss {
-        width: 100%;
+        width: 100vw;
     }
- .myFooter {
-    position: sticky;
-    bottom: 350px;
- }
+
 }

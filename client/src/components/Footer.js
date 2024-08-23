@@ -6,7 +6,7 @@ import "./Navbar.css";
 const Footer = () => {
   return (
     <footer
-      className="bg-dark text-white mt-2 myFooter"
+      className="bg-dark text-white mt-2  myFooter"
     >
       <Container fluid >
         <Row>
