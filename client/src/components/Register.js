@@ -89,8 +89,11 @@ const Register = () => {
         window.location.reload();
       }, 2000);
     } catch (error) {
+      console.error('Registration error:', error);
       if (error.response && error.response.status === 400) {
         ToastAlreadyExist();
+      } else {
+        toast.error("An unexpected error occurred");
       }
     }
   };

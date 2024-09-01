@@ -88,10 +88,81 @@ const register = async (req, res) => {
 
     res.json({ token });
   } catch (err) {
-    console.error(err.message);
+    console.error('Registration error:', err); // Log the full error object
     res.status(500).send("Server Error");
   }
 };
+
+// const register = async (req, res) => {
+//   const { username, email, password, phoneNumber, role, subscriptionDuration, paymentMethodId } = req.body;
+
+//   if (!subscriptionPrices[subscriptionDuration]) {
+//     return res.status(400).json({ msg: "Invalid subscription duration" });
+//   }
+
+//   try {
+//     let user = await User.findOne({ email });
+//     if (user) {
+//       return res.status(400).json({ msg: "Email already exists" });
+//     }
+
+//     // Create Stripe customer
+//     const customer = await stripe.customers.create({
+//       email,
+//     });
+
+//     // Attach the payment method to the customer
+//     await stripe.paymentMethods.attach(paymentMethodId, {
+//       customer: customer.id,
+//     });
+
+//     // Set the payment method as the default for this customer
+//     await stripe.customers.update(customer.id, {
+//       invoice_settings: { default_payment_method: paymentMethodId },
+//     });
+
+//     // Create Stripe subscription with recurring billing
+//     const subscription = await stripe.subscriptions.create({
+//       customer: customer.id,
+//       items: [{
+//         price_data: {
+//           currency: 'eur',
+//           product: productIds[subscriptionDuration], // Use the correct Product ID
+//           unit_amount: subscriptionPrices[subscriptionDuration] * 100, // amount in cents
+//           recurring: {
+//             interval: 'month', // Set the billing interval to month
+//             interval_count: subscriptionDuration // The duration (e.g., 1 month, 2 months, etc.)
+//           }
+//         }
+//       }],
+//       payment_behavior: 'default_incomplete',
+//       expand: ['latest_invoice.payment_intent']
+//     });
+
+//     user = new User({
+//       username,
+//       email,
+//       password,
+//       phoneNumber,
+//       role,
+//       stripeCustomerId: customer.id,
+//       subscriptionId: subscription.id,
+//       subscriptionEndDate: new Date(subscription.current_period_end * 1000)
+//     });
+
+//     const salt = await bcrypt.genSalt(SALT_ROUNDS);
+//     user.password = await bcrypt.hash(password, salt);
+//     await user.save();
+
+//     const payload = { user: { id: user.id, role: user.role, name: user.username } };
+//     const token = jwt.sign(payload, PRIVATE_KEY, { expiresIn: "1h" });
+
+//     res.json({ token });
+//   } catch (err) {
+//     console.error('Error details:', err); // Log the full error object for more information
+//     res.status(500).send("Server Error");
+//   }
+// };
 
 const createUser = async (req, res) => {
   const { username, email, password, phoneNumber, role } = req.body;
