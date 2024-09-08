@@ -93,7 +93,7 @@ const ViewClasses = () => {
                     >
                       <Card.Img
                         variant="top"
-                        src={`https://gym.myrender.eu/${cls.img}`}
+                        src={`https://gymbackend.myrender.eu/${cls.img}`}
                       />
                       <Card.Body>
                         <Card.Title>Class: {cls.title}</Card.Title>
