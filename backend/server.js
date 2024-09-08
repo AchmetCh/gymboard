@@ -11,12 +11,10 @@ const port = 8000;
 app.use(express.json());
 
 // CORS configuration
-
-app.options('*', cors())
 app.use(cors({
-  origin: '*', // Allow multiple origins
+  origin: 'https://gymboardlive.myrender.eu', // Allow only this domain
   methods: 'GET,POST,PUT,DELETE',
-  allowedHeaders: 'Content-Type,x-auth-token',
+  allowedHeaders: 'Content-Type,Authorization,x-auth-token', // Add x-auth-token header
   credentials: true, // Enable credentials if needed
   optionsSuccessStatus: 200
 }));
